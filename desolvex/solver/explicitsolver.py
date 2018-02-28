@@ -8,6 +8,7 @@ __author__ = 'christoph.statz <at> tu-dresden.de'
 
 from tqdm import tqdm
 
+from maui import context
 from maui.field import Field
 from desolvex.helper import ObjectSwapper
 
@@ -24,7 +25,7 @@ class ExplicitSolver(object):
     def solve(self):
 
         if self.__show_progress:
-            self.__progress = tqdm(unit='Time Steps', unit_scale=True, miniters=1, desc='Solver Progress:')
+            self.__progress = tqdm(unit='Time Steps', unit_scale=True, miniters=1, desc='Solver Progress', file=context.stderr)
 
         while True:
 
@@ -130,7 +131,6 @@ class ExplicitSolver(object):
                                 raise ValueError("Expected Field or ObjectSwapper of Function!")
                         else:
                             domain_args.append(arg)
-
                     func(*domain_args)
             else:
                 func()

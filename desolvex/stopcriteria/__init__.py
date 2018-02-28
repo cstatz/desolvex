@@ -6,4 +6,5 @@ from __future__ import print_function
 
 __author__ = 'christoph.statz <at> tu-dresden.de'
 
-from .iterationstopcriterium import IterationStopCriterion
+from .iterationstopcriterion import IterationStopCriterion
+from .nostopcriterion import NoStopCriterion

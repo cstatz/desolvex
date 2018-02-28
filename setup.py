@@ -6,7 +6,6 @@ from __future__ import print_function
 
 __author__ = 'christoph.statz <at> tu-dresden.de'
 
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
-
-dist = setup(setup_requires=['pbr>=1.9'], pbr=True)
+setup(setup_requires=['pbr>=1.9'], pbr=True)

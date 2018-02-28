@@ -49,6 +49,10 @@ class PointSource(Source):
         return self._source_function(float(t), self._parameter)
 
     @property
+    def index(self):
+        return self._index
+
+    @property
     def point_coord(self):
         return self._point
 

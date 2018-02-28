@@ -49,4 +49,4 @@ class RectilinearDomain(Domain):
 
                 meshes['face'][axis] = RectilinearMesh(axes_face)
 
-        Domain.__init__(self, meshes, fields, variables, coordinates, initializer)
+        Domain.__init__(self, meshes, fields, variables, coordinates, initializer, keypoints=keypoints)

@@ -12,8 +12,8 @@ from desolvex.helper import ObjectSwapper
 from desolvex.stopcriteria import IterationStopCriterion
 from desolvex.source import PointSource
 from desolvex.source.functions import ricker
-from maui.io import VTKOutput
 
+# TODO: GPU: Implement GPU example
 
 # Define the coordinate names for the fields
 coordinates = ['x', 'y', 'z']
@@ -40,13 +40,6 @@ c.fields['c'][:,:,:] = 1.
 def time_update(variables):
     variables['t'] = variables['dt']*variables['iteration']
 
-# Define which fields are written as simulation output
-io = VTKOutput([c.fields['e'], c.fields['c']], 'wave')
-
-def generate_output(io, stop_criterion):
-    if stop_criterion.int_value % 10 == 0:
-        io.write(cycle=stop_criterion.int_value)
-
 # Define a source function
 f0 = 3e9
 t0 = 50.*c.variables['dt']
@@ -65,7 +58,6 @@ actions.append([time_update, c.variables])
 actions.append([laplace_3d, c.fields['d'], [state_fields, 1]])
 actions.append([s.set, [c.variables, 't']])
 actions.append([time_integration_step, state_fields, c.fields['d'], c.fields['c']])
-actions.append([generate_output, io, stop_criterion])
 actions.append([state_fields.swap])
 
 # Instantiate the explicit solver
